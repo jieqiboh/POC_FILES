@@ -25,7 +25,6 @@ func (s *BizServiceImpl) GenericCall(ctx context.Context, method string, request
 	}
 
 	if f, ok := funcMap[method]; ok {
-		fmt.Printf("Recv: ok")
 		if fn, ok := f.(func(context.Context, interface{}) (interface{}, error)); ok {
 			return fn(ctx, request)
 		}
@@ -44,10 +43,8 @@ func BizMethod1(ctx context.Context, request interface{}) (response interface{},
 	if err != nil {
 		log.Println(err.Error())
 	}
-	fmt.Printf("Recv: %v\n", j.Text)
 
-	fmt.Printf("Recv: %v\n", m)
-	return "{\"text\":" + "\"" + "BizMethod1 called" + " is your message\"}", nil
+	return `{"text":"` + "BizMethod1 called, " + j.Text + " is your text" + `", "http_code": ` + fmt.Sprint(200) + `, "token": ` + fmt.Sprint(j.Token) + `}`, nil
 }
 
 // BizMethod2 implements the BizServiceImpl interface.
@@ -59,10 +56,8 @@ func BizMethod2(ctx context.Context, request interface{}) (response interface{},
 	if err != nil {
 		log.Println(err.Error())
 	}
-	fmt.Printf("Recv: %v\n", j.Text)
 
-	fmt.Printf("Recv: %v\n", m)
-	return "{\"text\":" + "\"" + "BizMethod2 called" + " is your message\"}", nil
+	return `{"text":"` + "BizMethod2 called, " + j.Text + " is your text" + `", "http_code": ` + fmt.Sprint(200) + `, "token": ` + fmt.Sprint(j.Token) + `}`, nil
 }
 
 // BizMethod3 implements the BizServiceImpl interface.
@@ -74,8 +69,6 @@ func BizMethod3(ctx context.Context, request interface{}) (response interface{},
 	if err != nil {
 		log.Println(err.Error())
 	}
-	fmt.Printf("Recv: %v\n", j.Text)
 
-	fmt.Printf("Recv: %v\n", m)
-	return "{\"text\":" + "\"" + "BizMethod3 called" + " is your message\"}", nil
+	return `{"text":"` + "BizMethod3 called, " + j.Text + " is your text" + `", "http_code": ` + fmt.Sprint(200) + `, "token": ` + fmt.Sprint(j.Token) + `}`, nil
 }

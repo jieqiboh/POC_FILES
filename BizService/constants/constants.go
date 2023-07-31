@@ -2,7 +2,7 @@ package constants
 
 // information about server
 const (
-	SERVER_ADDRESS = "0.0.0.0:9000"
+	SERVER_ADDRESS = "0.0.0.0:9001"
 )
 
 // information about etcd instance
